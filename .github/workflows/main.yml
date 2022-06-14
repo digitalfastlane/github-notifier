@@ -1,7 +1,7 @@
 name: 'Pull Request Notifier'
 
 on: # Triggers job only after commit or pull requests to main branch
-  pull_requests:
+  pull_request:
     branches:
       - main
   push:
