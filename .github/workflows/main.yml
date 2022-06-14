@@ -1,2 +1,18 @@
-- name: Webhook Notifier
-  uses: Netail/webhook-notifier@v1
+name: 'Pull Request Notifier'
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: Netail/webhook-notifier@v1
+      with:
+        discord-url: 'https://discord.com/api/webhooks/986241106192760832/vO3i5RaVMSd0NEQ_5ZlRDeGdDrD5v--3994Lbs9X15O_6HG9SLxKuGUWg5BuUQhVajaT'
+        color: 'info'
+        title: '${{ github.event.pull_request.user.login }} opened PR-${{ github.event.number }} in ${{ github.event.repository.name }}'
+        text: ${{ github.event.pull_request.title }}
+        fields: '[{"name": "Repository", "value": "${{ github.event.repository.name }}"}, {"name": "Pull Request ID", "value": "${{ github.event.number }}"}]'
+        buttons: '[{"label": "View PR", "url": "${{ github.event.pull_request.html_url }}"}]'
