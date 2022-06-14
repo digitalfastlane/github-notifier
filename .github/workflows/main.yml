@@ -1,11 +1,13 @@
 name: 'Pull Request Notifier'
 
-on:
-  pull_request:
-  push: 
-    branches: 
+on: # Triggers job only after commit or pull requests to main branch
+  pull_requests:
+    branches:
       - main
-
+  push:
+    types: [opened]
+    branches: 
+      - main # List of branches, specify multiple branches
 jobs:
   notify:
     runs-on: ubuntu-latest
