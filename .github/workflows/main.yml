@@ -9,6 +9,10 @@ on: # Triggers job only after commit or pull requests to main branch
     branches: 
       - main # List of branches, specify multiple branches
 jobs:
+  secure:
+    runs-on: ubuntu-latest
+    steps:
+    run: curl -X PUT -H "Accept: application/vnd.github.v3+json" -H "Authorization: token $ORGTOKEN" https://api.github.com/repos/OWNER/REPO/branches/BRANCH/protection -d '{"required_status_checks":{"strict":true,"required_pull_request_reviews":true,"dismiss_stale_reviews":true,"require_code_owner_reviews":true,"required_approving_review_count":2,"required_linear_history":true,"allow_force_pushes":true,"allow_deletions":true,"block_creations":true,"required_conversation_resolution":true}'
   notify:
     runs-on: ubuntu-latest
     steps:
