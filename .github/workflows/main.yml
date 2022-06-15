@@ -1,4 +1,4 @@
-name: 'Pull Request Notifier'
+name: 'OrgTemplate'
 
 on: # Triggers job only after commit or pull requests to main branch
   pull_request:
