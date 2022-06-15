@@ -1,4 +1,4 @@
-name: 'OrgTemplate'
+name: 'OrgSetup'
 
 on: # Triggers job only after commit or pull requests to main branch
   pull_request:
