@@ -1,18 +1,18 @@
-name: 'OrgSetup'
-
-on: # Triggers job only after commit or pull requests to main branch
+name: Log latest release
+on:
   pull_request:
     types: [opened]
     branches:
       - main
   push:
-    branches: 
-      - main # List of branches, specify multiple branches
+    branches:
+      - main
+
 jobs:
-  secure:
+  logLatestRelease:
     runs-on: ubuntu-latest
     steps:
-    run: curl -X PUT -H "Accept: application/vnd.github.v3+json" -H "Authorization: token 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" https://api.github.com/repos/digitalfastlane/$GITHUB_REPOSITORY/branches/secure/protection -d "{\"required_status_checks\":{\"strict\":true,\"contexts\":[\"continuousintegration\"]},\"enforce_admins\":true,\"required_pull_request_reviews\":{\"dismissal_restrictions\":{\"users\":[\"javathecup\"],\"teams\":[\"devs\"]},\"dismiss_stale_reviews\":true,\"require_code_owner_reviews\":true,\"required_approving_review_count\":2,\"bypass_pull_request_allowances\":{\"users\":[\"javathecup\"],\"teams\":[\"devs\"]}},\"restrictions\":{\"users\":[\"javathecup\"],\"teams\":[\"devs\"],\"apps\":[\"super-ci\"]},\"required_linear_history\":true,\"allow_force_pushes\":true,\"allow_deletions\":true,\"block_creations\":true,\"required_conversation_resolution\":true}"
+    - run: "curl -X PUT -H "Accept: application/vnd.github.v3+json" -H "Authorization: token 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" https://api.github.com/repos/digitalfastlane/template1234/branches/secure/protection -d "{\"required_status_checks\":{\"strict\":true,\"contexts\":[\"continuousintegration\"]},\"enforce_admins\":true,\"required_pull_request_reviews\":{\"dismissal_restrictions\":{\"users\":[\"javathecup\"],\"teams\":[\"devs\"]},\"dismiss_stale_reviews\":true,\"require_code_owner_reviews\":true,\"required_approving_review_count\":2,\"bypass_pull_request_allowances\":{\"users\":[\"javathecup\"],\"teams\":[\"devs\"]}},\"restrictions\":{\"users\":[\"javathecup\"],\"teams\":[\"devs\"],\"apps\":[\"super-ci\"]},\"required_linear_history\":true,\"allow_force_pushes\":true,\"allow_deletions\":true,\"block_creations\":true,\"required_conversation_resolution\":true}""
   notify:
     runs-on: ubuntu-latest
     steps:
